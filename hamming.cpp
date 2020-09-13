@@ -11,13 +11,13 @@ bool isPowerOfTwo(unsigned x);
 
 int main() {
 	char inp;
-	string rec;
+	string rec,s;
 
-	std::cout << "enter a character to encode : ";
-	std::cin >> inp;
-
+	std::cout << "enter a character to encode (if multiple chars are enterd only first char will be considered): ";
+	std::cin >> s;
+	inp = s[0];
 	bitset<8> bs = bitset<8>(inp) << 1;
-	std::cout << "entered character in binary is" << bs.to_string().substr(0,bs.size()-1) << std::endl;
+	std::cout << "entered character in ASCII is " << bs.to_string().substr(0,bs.size()-1) << std::endl;
 	bitset<12> en = hencode(bs);
 	std::cout << "encoded message is " << en.to_string().substr(0,en.size()-1) << std::endl;
 
@@ -30,7 +30,7 @@ int main() {
 	bitset<8> de = hdecode(brec) >> 1;
 	char op = de.to_ulong();
 	std::cout << "decoded message is " << de.to_string().substr(1,de.size()) << std::endl;
-	std::cout << "decoded char is" << op << std::endl;
+	std::cout << "decoded message in ASCII : " << op << std::endl;
 
 }
 
